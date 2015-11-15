@@ -4,7 +4,7 @@
 ---
 
 ### Screenshots
-![Image](../blob/master/screenshot.png?raw=true)
+![Image](https://raw.githubusercontent.com/SwordYork/monky/master/screenshot.jpg)
 
 ---
 
