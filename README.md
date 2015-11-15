@@ -11,4 +11,4 @@ To be sure that your Conky installation has both Lua support and Cairo bindings,
 
 
 ### Installation
-Just download the repository, and copy it to `~/.conky`, and run the script `start_monky.sh`
+Just download the repository, and copy it to `~/.monky`, and run the script `start_monky.sh`
