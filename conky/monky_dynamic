@@ -1,0 +1,111 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+alignment top_right
+background no
+border_width 0
+cpu_avg_samples 2
+default_color AA0000
+default_outline_color white
+default_shade_color red
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+gap_x 50
+gap_y 147
+net_avg_samples 2
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+# kde transparent
+own_window yes
+own_window_title "conky dynamic"
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_type normal
+#own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+
+stippled_borders 0
+update_interval 2.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+double_buffer yes
+
+minimum_size 277, 700
+maximum_width 360
+
+
+lua_load ~/.monky/lua/monky_dynamic.lua
+lua_draw_hook_post main
+
+
+
+TEXT
+${voffset 134}
+# $hr
+# ${color grey}Uptime:$color $uptime
+# ${color grey}Frequency (in MHz):$color $freq
+# ${color grey}Frequency (in GHz):$color $freq_g
+# ${color white}Processes:$color $processes  ${color grey}Running:$color $running_processes
+# $hr
+#${color grey}Networking:
+#Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
+${color ee0011}
+${color ff0054}Name               ${color ffab00}PID   ${color 00998d}CPU  ${color 00663c}  MEM
+${color ff0054}${top name 1} ${color ffab00}${top pid 1} ${color 00998d}${top cpu 1} ${color 00663c}${top mem 1}
+${color ff0054}${top name 2} ${color ffab00}${top pid 2} ${color 00998d}${top cpu 2} ${color 00663c}${top mem 2}
+${color ff0054}${top name 3} ${color ffab00}${top pid 3} ${color 00998d}${top cpu 3} ${color 00663c}${top mem 3}
+${color ff0054}${top name 4} ${color ffab00}${top pid 4} ${color 00998d}${top cpu 4} ${color 00663c}${top mem 4}
+${color ff0054}${top name 5} ${color ffab00}${top pid 5} ${color 00998d}${top cpu 5} ${color 00663c}${top mem 5}
+${color ff0054}${top name 6} ${color ffab00}${top pid 6} ${color 00998d}${top cpu 6} ${color 00663c}${top mem 6}
+${color ff0054}${top name 7} ${color ffab00}${top pid 7} ${color 00998d}${top cpu 7} ${color 00663c}${top mem 7}
+${color red}$hr
+$alignr ${color ff4a3a}${nameserver} 
+$alignr ${execi 60 ss -nlt4 | awk -F: 'NR!=1{print $2}' | awk 'BEGIN{ORS=","} {print $1}' | sed "s/,$//" } 
+
+#${diskio_read}
+#${diskio_write}
+#${diskio}
+# ${loadavg 1}
+$alignr cpu-temp: ${execi 30 acpi -t | awk 'BEGIN { ORS=" "} {print $4}'}C 
+#$alignr nvidia-mem: ${execi 60 nvidia-smi -q -d MEMORY | sed -n "/Used.*MiB/p" | awk '{print $3}'}   M 
+#$alignr nvidia-temp: ${execi 60 nvidia-smi -q -d TEMPERATURE | sed -n "/Current/p" | awk '{print $5}'}.0 C 
+#$alignr ${execi 60 netstat -tupln}
+#${lua conky_test}
+#${image /home/york/Picture/500_pcwall.jpg -p 20,200 -s 200x200}
+#${voffset 170}
+
+#${tcp_portmon 9019 9019 rip 0}
+#${tcp_portmon 9053  9053 count}
+#${tcp_portmon 53  53 count}
+#${tcp_portmon 9053  9053   rip 0}

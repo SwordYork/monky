@@ -1,0 +1,76 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+alignment top_right
+background no
+border_width 0
+cpu_avg_samples 2
+default_color ff4a3a
+default_outline_color white
+default_shade_color red
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+gap_x 50
+gap_y 10
+net_avg_samples 2
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+# kde transparent
+own_window yes
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_type normal
+own_window_title "conky_static"
+#own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+
+stippled_borders 0
+# static updates per 10s
+update_interval 10.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+double_buffer yes
+
+minimum_size 360, 400
+maximum_width 360
+
+lua_load ~/.monky/lua/monky_static.lua
+lua_draw_hook_post main
+
+
+TEXT
+${voffset 70}
+${color red}$hr
+$color${time %Y-%m-%d %A              %H:%M}
+
