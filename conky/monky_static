@@ -62,7 +62,7 @@ show_graph_scale no
 show_graph_range no
 double_buffer yes
 
-minimum_size 360, 400
+minimum_size 360 400
 maximum_width 360
 
 lua_load ~/.monky/lua/monky_static.lua
